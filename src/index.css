@@ -7,7 +7,7 @@
 
 @layer base {
     body {
-        @apply bg-background text-primary
+        @apply bg-background text-text
     }
 }
 
@@ -22,7 +22,7 @@
         @apply font-chakra font-normal text-[43px]
     }
     .h4 {
-        @apply font-chakra font-normal text-[31px] tracking-[0.25px]
+        @apply font-chakra font-normal text-[28px] tracking-[0.25px]
     }
     .h5 {
         @apply font-chakra font-normal text-[22px]

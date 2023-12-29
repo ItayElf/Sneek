@@ -11,6 +11,10 @@ module.exports = {
         primary: {
           DEFAULT: "#ff5252",
         },
+        text: {
+          DEFAULT: "#ffffff",
+          light: "#cccccc",
+        },
       },
       fontFamily: {
         chakra: ["Chakra Petch", "sans-serif"],
