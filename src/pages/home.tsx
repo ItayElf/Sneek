@@ -6,6 +6,8 @@ import { jwtDecode } from "jwt-decode";
 import { ReactComponent as Logo } from "../logo.svg";
 import { useCallback } from "react";
 import { API_URL } from "../config";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 /// Returns the duration from now until [timestamp] as {hours}:{minutes}
 const getFormattedDuration = (timestamp: number) => {
@@ -20,12 +22,13 @@ const getFormattedDuration = (timestamp: number) => {
 function Home() {
   const userData = useFetchUser();
   const channels = useFetchChannels();
+
   const onJoin = useCallback(
     async (channel: string) => {
       if (!userData) {
         return;
       }
-      await fetch(API_URL + "channels/join", {
+      const response = await fetch(API_URL + "channels/join", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${userData.token}`,
@@ -33,6 +36,9 @@ function Home() {
         },
         body: JSON.stringify({ channel }),
       });
+      if (!response.ok) {
+        toast.error(await response.text());
+      }
     },
     [userData]
   );
@@ -70,6 +76,18 @@ function Home() {
           ))}
         </div>
       </div>
+      <ToastContainer
+        position="bottom-left"
+        autoClose={2000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </>
   );
 }
