@@ -4,7 +4,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "#121212",
+        background: {
+          DEFAULT: "#121212",
+          light: "#222222",
+        },
         primary: {
           DEFAULT: "#ff5252",
         },
@@ -15,5 +18,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: ["prettier-plugin-tailwindcss"],
 };
