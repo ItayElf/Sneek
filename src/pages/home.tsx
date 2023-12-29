@@ -4,6 +4,8 @@ import useFetchChannels from "../hooks/useFetchChannels";
 import useFetchUser from "../hooks/useFetchUser";
 import { jwtDecode } from "jwt-decode";
 import { ReactComponent as Logo } from "../logo.svg";
+import { useCallback } from "react";
+import { API_URL } from "../config";
 
 /// Returns the duration from now until [timestamp] as {hours}:{minutes}
 const getFormattedDuration = (timestamp: number) => {
@@ -18,6 +20,22 @@ const getFormattedDuration = (timestamp: number) => {
 function Home() {
   const userData = useFetchUser();
   const channels = useFetchChannels();
+  const onJoin = useCallback(
+    async (channel: string) => {
+      if (!userData) {
+        return;
+      }
+      await fetch(API_URL + "channels/join", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${userData.token}`,
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ channel }),
+      });
+    },
+    [userData]
+  );
 
   if (userData == null || channels == null) {
     return (
@@ -47,8 +65,8 @@ function Home() {
           Happy hacking!
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full">
-          {channels.map((channel) => (
-            <ChannelCard channel={channel} />
+          {channels.map((channel, i) => (
+            <ChannelCard channel={channel} onClick={onJoin} key={i} />
           ))}
         </div>
       </div>
