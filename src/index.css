@@ -5,6 +5,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    body {
+        @apply bg-background text-primary
+    }
+}
+
 @layer components {
     .h1 {
         @apply font-chakra font-light text-[86px] -tracking-[1.5px]

@@ -1,6 +1,6 @@
 function App() {
   return (
-    <h1 className="h1">
+    <h1 className="h1 font-glitch">
       Sneek
     </h1>
   );
