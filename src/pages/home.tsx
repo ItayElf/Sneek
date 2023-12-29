@@ -16,11 +16,20 @@ function Home() {
     );
   }
 
+  const capitalizedName = userData.name.replace(/\b\w/g, (match) =>
+    match.toUpperCase()
+  );
+
   return (
     <>
       <div className="w-full mx-auto container bg-background-light sm:mt-16 flex items-center p-8 flex-col rounded">
         <Logo />
         <h1 className="h1 font-glitch -mt-4 text-primary">SNEEK</h1>
+        <p className="lg:h4 -mt-4 mb-8 sm:h5 h6 text-center">
+          You are connected as{" "}
+          <span className="text-primary italic">{capitalizedName}</span>. Happy
+          hacking!
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full">
           {channels.map((channel) => (
             <ChannelCard channel={channel} />
