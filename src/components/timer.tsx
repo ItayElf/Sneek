@@ -24,7 +24,7 @@ function Timer({ timestamp, className }: Props) {
       500
     );
     return () => clearInterval(intervalId);
-  }, [difference, setDifference]);
+  }, [setDifference, timestamp]);
 
   return (
     <span className={className ?? ""}>{getFormattedDuration(difference)}</span>

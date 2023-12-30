@@ -35,7 +35,7 @@ function Home() {
       }
       navigate(`/channel/${channel}`);
     },
-    [userData]
+    [userData, navigate]
   );
 
   if (userData == null || channels == null) {
