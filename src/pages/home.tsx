@@ -12,7 +12,7 @@ import Timer from "../components/timer";
 
 function Home() {
   const userData = useFetchUser();
-  const channels = useFetchChannels(1000);
+  const channels = useFetchChannels();
 
   const onJoin = useCallback(
     async (channel: string) => {
