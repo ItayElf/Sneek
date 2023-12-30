@@ -1,4 +1,5 @@
 import Message from "../interfaces/message";
+import MessageTimer from "./messageTimer";
 
 interface Props {
   message: Message;
@@ -10,7 +11,10 @@ function MessageView({ message, isSentByMe }: Props) {
     <>
       <div className={`w-full mb-4 flex ${isSentByMe ? "justify-end" : ""}`}>
         <div className={`flex w-full ${isSentByMe ? "flex-row-reverse" : ""}`}>
-          <div>timer</div>
+          <MessageTimer
+            sentAt={new Date(message.sent_at * 1000)}
+            expiredAt={new Date(message.expired_at * 1000)}
+          />
           <div
             className={`p-4 rounded-xl max-w-[60%] block ${
               isSentByMe ? "bg-primary" : "bg-background-light2"
