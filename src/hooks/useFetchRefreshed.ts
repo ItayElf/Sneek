@@ -7,13 +7,21 @@ interface FetchResult<T> {
 
 function useFetchRefreshed<T>(
   url: string,
-  refreshRate?: number
+  refreshRate?: number,
+  token?: string
 ): FetchResult<T> {
   const [object, setObject] = useState<T | null | undefined>();
   const [error, setError] = useState<string | null | undefined>();
 
   const fetchObject = useCallback(async () => {
-    const response = await fetch(url);
+    const options = token
+      ? {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      : {};
+    const response = await fetch(url, options);
     if (!response.ok) {
       const text = await response.text();
       console.error(text);
@@ -21,7 +29,7 @@ function useFetchRefreshed<T>(
     }
     const result = await response.json();
     return result as T;
-  }, [url]);
+  }, [url, token]);
 
   useEffect(() => {
     fetchObject().then(setObject).catch(setError);

@@ -5,12 +5,12 @@ import { jwtDecode } from "jwt-decode";
 import { ReactComponent as Logo } from "../logo.svg";
 import { useCallback } from "react";
 import { API_URL } from "../config";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Timer from "../components/timer";
 import { useNavigate } from "react-router-dom";
 import { useFetchChannels } from "../hooks/useFetchChannels";
 import Toaster from "../components/toaster";
+import { toast } from "react-toastify";
 
 function Home() {
   const userData = useFetchUser();
@@ -55,7 +55,7 @@ function Home() {
 
   return (
     <>
-      <div className="w-full mx-auto container bg-background-light sm:mt-16 flex items-center p-8 flex-col rounded">
+      <div className="mx-auto container bg-background-light sm:mt-16 flex items-center p-8 flex-col rounded">
         <Logo />
         <h1 className="h1 font-glitch -mt-4 text-primary">SNEEK</h1>
         <p className="lg:h4 -mt-4 mb-8 sm:h5 h6 text-center">

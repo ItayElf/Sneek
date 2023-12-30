@@ -10,6 +10,7 @@ module.exports = {
         },
         primary: {
           DEFAULT: "#ff5252",
+          light: "#ff9c9c",
         },
         text: {
           DEFAULT: "#ffffff",
