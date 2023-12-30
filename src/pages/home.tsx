@@ -12,7 +12,7 @@ import Timer from "../components/timer";
 
 function Home() {
   const userData = useFetchUser();
-  const channels = useFetchChannels();
+  const channels = useFetchChannels(1000);
 
   const onJoin = useCallback(
     async (channel: string) => {
@@ -47,7 +47,6 @@ function Home() {
   );
 
   const expiredTimestamp = (jwtDecode(userData.token).exp ?? 0) * 1000;
-  // const formattedTime = getFormattedDuration(expiredTimestamp);
 
   return (
     <>
@@ -57,12 +56,9 @@ function Home() {
         <p className="lg:h4 -mt-4 mb-8 sm:h5 h6 text-center">
           You are connected as{" "}
           <span className="text-primary italic">{capitalizedName}</span>. <br />
-          Your session is valid until{" "}
-          <Timer
-            timestamp={expiredTimestamp}
-            className="text-primary italic"
-          />{" "}
-          Happy hacking!
+          Your session is valid for{" "}
+          <Timer timestamp={expiredTimestamp} className="text-primary italic" />
+          . Happy hacking!
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full">
           {channels.map((channel, i) => (

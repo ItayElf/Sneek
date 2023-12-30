@@ -1,18 +1,31 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { API_URL } from "../config";
 import Channel from "../interfaces/channel";
 
-const useFetchChannels = () => {
+const useFetchChannels = (refreshRate?: number) => {
   const [channels, setChannels] = useState<Channel[] | null>(null);
 
-  useEffect(() => {
-    const fetchChannels = async () => {
-      const response = await fetch(API_URL + "channels");
-      const result = await response.json();
-      setChannels(result);
-    };
-    fetchChannels();
+  const fetchChannels = useCallback(async () => {
+    const response = await fetch(API_URL + "channels");
+    const result = await response.json();
+    return result as Channel[];
   }, []);
+
+  useEffect(() => {
+    fetchChannels().then(setChannels);
+  }, [fetchChannels]);
+
+  useEffect(() => {
+    if (!refreshRate) {
+      return;
+    }
+    const intervalId = setInterval(async () => {
+      const newChannels = await fetchChannels();
+      setChannels(newChannels);
+    }, refreshRate);
+
+    return () => clearInterval(intervalId);
+  }, [fetchChannels, refreshRate]);
 
   return channels;
 };
