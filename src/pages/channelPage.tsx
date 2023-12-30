@@ -6,6 +6,7 @@ import { useCallback } from "react";
 import { API_URL } from "../config";
 import { ToastContainer, toast } from "react-toastify";
 import ChannelHeader from "../components/channelHeader";
+import Toaster from "../components/toaster";
 
 function ChannelPage() {
   const { channelName } = useParams();
@@ -61,18 +62,7 @@ function ChannelPage() {
         <div className="min-h-[80vh]"></div>
         <div className="p-4 bg-primary w-full"></div>
       </div>
-      <ToastContainer
-        position="bottom-left"
-        autoClose={2000}
-        hideProgressBar={true}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
+      <Toaster />
     </>
   );
 }

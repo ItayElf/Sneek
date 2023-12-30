@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Timer from "../components/timer";
 import { useNavigate } from "react-router-dom";
 import { useFetchChannels } from "../hooks/useFetchChannels";
+import Toaster from "../components/toaster";
 
 function Home() {
   const userData = useFetchUser();
@@ -70,18 +71,7 @@ function Home() {
           ))}
         </div>
       </div>
-      <ToastContainer
-        position="bottom-left"
-        autoClose={2000}
-        hideProgressBar={true}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
+      <Toaster />
     </>
   );
 }
