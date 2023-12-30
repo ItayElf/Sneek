@@ -37,7 +37,7 @@ function ChannelCard({ channel, onClick }: Props) {
       disabled={!isActive}
     >
       <h4 className="2xl:h4 lg:h5 md:h5 sm:h4 h5">{channel.name}</h4>
-      <p className="h6 text-text-light group-disabled:text-white/50">
+      <p className="h6 text-text group-disabled:text-white/50">
         🕴 {channel.connected_participants}
         {channel.max_participants && ` / ${channel.max_participants}`} | ⌛{" "}
         {channel.message_duration}s
