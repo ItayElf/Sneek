@@ -9,10 +9,12 @@ import { API_URL } from "../config";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Timer from "../components/timer";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const userData = useFetchUser();
-  const channels = useFetchChannels();
+  const channels = useFetchChannels(1000);
+  const navigate = useNavigate();
 
   const onJoin = useCallback(
     async (channel: string) => {
@@ -29,7 +31,9 @@ function Home() {
       });
       if (!response.ok) {
         toast.error(await response.text());
+        return;
       }
+      navigate(`/channel/${channel}`);
     },
     [userData]
   );
