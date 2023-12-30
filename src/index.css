@@ -52,3 +52,14 @@
         @apply font-chakra font-normal text-[9px] tracking-[1.5px] uppercase
     }
 }
+
+@layer utilities {
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}

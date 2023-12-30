@@ -9,12 +9,13 @@ import Toaster from "../components/toaster";
 import { toast } from "react-toastify";
 import useFetchMessages from "../hooks/useFetchMessages";
 import ChannelFooter from "../components/channelFooter";
+import MessagesPanel from "../components/messagesPanel";
 
 function ChannelPage() {
   const { channelName } = useParams();
   const navigate = useNavigate();
   const userData = useFetchUser();
-  const messages = useFetchMessages(userData?.token ?? "", 500);
+
   const { object: channel, error: channelError } = useFetchChannel(
     channelName ?? "",
     1000
@@ -42,7 +43,7 @@ function ChannelPage() {
     return <>{channelError}</>;
   }
 
-  if (!userData || !channel || !messages) {
+  if (!userData || !channel) {
     return (
       <div className="h-[100vh] grid bg-center">
         <LoadingCirle />
@@ -63,7 +64,7 @@ function ChannelPage() {
             username={userData.name}
             onBack={onBack}
           />
-          <div className="min-h-[80vh]"></div>
+          <MessagesPanel token={userData.token} username={userData.name} />
           <ChannelFooter token={userData.token} />
         </div>
       </div>
