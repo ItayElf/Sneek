@@ -1,6 +1,5 @@
 import ChannelCard from "../components/channelCard";
 import LoadingCirle from "../components/loadingCircle";
-import useFetchChannels from "../hooks/useFetchChannels";
 import useFetchUser from "../hooks/useFetchUser";
 import { jwtDecode } from "jwt-decode";
 import { ReactComponent as Logo } from "../logo.svg";
@@ -10,6 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Timer from "../components/timer";
 import { useNavigate } from "react-router-dom";
+import { useFetchChannels } from "../hooks/useFetchChannels";
 
 function Home() {
   const userData = useFetchUser();
