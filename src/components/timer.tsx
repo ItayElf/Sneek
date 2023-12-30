@@ -20,8 +20,8 @@ function Timer({ timestamp, className }: Props) {
 
   useEffect(() => {
     const intervalId = setInterval(
-      () => setDifference(difference - 1000),
-      1000
+      () => setDifference(timestamp - Date.now()),
+      500
     );
     return () => clearInterval(intervalId);
   }, [difference, setDifference]);
