@@ -7,7 +7,6 @@ import { API_URL } from "../config";
 import ChannelHeader from "../components/channelHeader";
 import Toaster from "../components/toaster";
 import { toast } from "react-toastify";
-import useFetchMessages from "../hooks/useFetchMessages";
 import ChannelFooter from "../components/channelFooter";
 import MessagesPanel from "../components/messagesPanel";
 
