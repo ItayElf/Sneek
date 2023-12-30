@@ -13,7 +13,7 @@ import { useFetchChannels } from "../hooks/useFetchChannels";
 
 function Home() {
   const userData = useFetchUser();
-  const channels = useFetchChannels(1000);
+  const { object: channels } = useFetchChannels(1000);
   const navigate = useNavigate();
 
   const onJoin = useCallback(
@@ -38,7 +38,7 @@ function Home() {
     [userData, navigate]
   );
 
-  if (userData == null || channels == null) {
+  if (!userData || !channels) {
     return (
       <div className="h-[100vh] grid bg-center">
         <LoadingCirle />

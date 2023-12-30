@@ -6,9 +6,15 @@ import LoadingCirle from "../components/loadingCircle";
 function ChannelPage() {
   const { channelName } = useParams();
   const userData = useFetchUser();
-  const channel = useFetchChannel(channelName ?? "");
+  const { object: channel, error: channelError } = useFetchChannel(
+    channelName ?? ""
+  );
 
-  if (userData == null || channel == null) {
+  if (channelError) {
+    return <>{channelError}</>;
+  }
+
+  if (!userData || !channel) {
     return (
       <div className="h-[100vh] grid bg-center">
         <LoadingCirle />
