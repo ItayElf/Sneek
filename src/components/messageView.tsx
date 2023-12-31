@@ -20,10 +20,10 @@ function MessageView({ message, isSentByMe }: Props) {
               isSentByMe ? "bg-primary" : "bg-background-light2"
             }`}
           >
-            <span className={isSentByMe ? "hidden" : "s1 text-primary"}>
+            <span className={isSentByMe ? "hidden" : "s2 sm:s1 text-primary"}>
               {message.sent_by.replace(/\b\w/g, (match) => match.toUpperCase())}
             </span>
-            <p className="h6 sm:h5">{message.content}</p>
+            <p className="s1 sm:h5">{message.content}</p>
           </div>
         </div>
       </div>
