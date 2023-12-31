@@ -37,7 +37,7 @@ function ChannelFooter({ token }: Props) {
 
   return (
     <form
-      className="p-4 bg-primary w-full flex h5 text-background"
+      className="p-4 bg-primary w-full flex h6 sm:h5 text-background"
       onSubmit={sendMessage}
     >
       <input
